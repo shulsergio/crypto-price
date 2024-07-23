@@ -1,1 +1,7 @@
 @import url('./clear.css');
+
+
+.container{
+    
+max-width: 375px;
+}
