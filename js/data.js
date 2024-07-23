@@ -16,7 +16,6 @@ const arrayCryptoNames = [
   "NEAR",
   "PEPE",
 ];
-let GlobalData = [];
 const options = {
   method: "GET",
   headers: { "X-Api-Key": "kfw8G/XH8SaR+4EH8nNHRg==MhaNIkyhROXsj9yj" },
@@ -70,9 +69,4 @@ export async function getArrayForMarkup(fname = "USDT") {
     console.error(error);
   }
   return newData;
-}
-export async function main() {
-  GlobalData = await getArrayForMarkup("USDT");
-  console.log("GlobalData");
-  console.log(GlobalData);
 }
