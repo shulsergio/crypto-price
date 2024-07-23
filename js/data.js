@@ -7,14 +7,12 @@ const arrayCryptoNames = [
   "USDC",
   "XRP",
   "DOGE",
-  "TON",
   "ADA",
   "AVAX",
   "TRX",
   "SHIB",
   "LINK",
   "NEAR",
-  "PEPE",
 ];
 const options = {
   method: "GET",
@@ -33,15 +31,15 @@ export async function getJsonApiData(urlData) {
  * візіваєм тільки якщо треба якусь валюту подивитись (на будущее)
  *
  */
-async function getCryptoNames() {
+export async function getCryptoNames() {
   try {
     const alldata = await getJsonApiData(
       `https://api.api-ninjas.com/v1/cryptosymbols`
     );
     console.log(Array.isArray(alldata.symbols));
-    const ArrayUSDT = alldata.symbols.filter((item) => item.includes("USDT")); // вібираем валюту в фильтр
-    // console.log(Array.isArray(ArrayUSDT));
-    // console.log(ArrayUSDT);
+    const ArrayUSDT = alldata.symbols.filter((item) => item.includes("DOGE")); // вібираем валюту в фильтр
+    console.log(Array.isArray(ArrayUSDT));
+    console.log(ArrayUSDT);
   } catch (error) {
     console.error(error);
   }
@@ -50,7 +48,15 @@ export async function getArrayForMarkup(fname = "USDT") {
   let newData = [];
 
   try {
-    for (let i = 0; i < 1; i++) {
+    for (let i = 0; i < arrayCryptoNames.length; i++) {
+      if (arrayCryptoNames[i] === fname) {
+        newData.push({
+          arrayName: arrayCryptoNames[i],
+          filterName: fname,
+          price: 1,
+        });
+        continue;
+      }
       let dataSplit = arrayCryptoNames[i] + fname;
       console.log("dataSplit");
       console.log(dataSplit);
